@@ -27,6 +27,7 @@ import { useState, useEffect } from 'react';
 import { useChat } from "ai/react";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import AiSettingsPage from './aisettingspage';
 
 
 export default function MainPage() {
@@ -34,6 +35,7 @@ export default function MainPage() {
   const [aiPrompt, setAiPrompt] = useState('');
   const [codeArea, setCodeArea] = useState('');
   const [explanation, setExplanation] = useState('');
+  const [showSettings, setShowSettings] = useState(false);
   const { isConnected, handleGithubConnect } = useGithubConnection();
   const { messages, isLoading, append } = useChat();
 
@@ -92,10 +94,12 @@ export default function MainPage() {
             <CloudIcon className="w-4 h-4 mr-2" />
             Deploy
           </Button>
-          <Button variant="ghost" className="justify-start">
+          <Button variant="ghost" className="justify-start" onClick={() => setShowSettings(true)}>
             <SettingsIcon className="w-4 h-4 mr-2" />
             Settings
           </Button>
+          {showSettings && <AiSettingsPage onClose={() => setShowSettings(false)} />}
+
           <Button 
             variant="ghost" 
             className="justify-start"
