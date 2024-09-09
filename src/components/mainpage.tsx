@@ -23,28 +23,51 @@ To read more about using these font, please visit the Next.js documentation:
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { useGithubConnection } from "@/utils/githubActions";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useChat } from "ai/react";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
 
 export default function MainPage() {
 
   const [aiPrompt, setAiPrompt] = useState('');
   const [codeArea, setCodeArea] = useState('');
+  const [explanation, setExplanation] = useState('');
   const { isConnected, handleGithubConnect } = useGithubConnection();
   const { messages, isLoading, append } = useChat();
 
   const handleSubmit = async () => {
-    append({
+    await append({
       role: "user",
-      content: "Give me a random recipe",
+      content: aiPrompt,
     })
-};
+    setAiPrompt('');
+  };
 
+  useEffect(() => {
+    // Vérifier le dernier message pour le champ "code"
+    const lastMessage = messages[messages.length - 1];
+    if (lastMessage && lastMessage.role === 'assistant') {
+      try {
+        const content = JSON.parse(lastMessage.content);
+        if (content.code) {
+          setCodeArea(content.code);
+        }
+        if (content.explanation) {
+          setExplanation(content.explanation);
+        }
+    } catch (error) {
+        console.error("Erreur lors du parsing du JSON:", error);
+      }
+    }
+  }, [messages]);
+  
   return (
     <div className="flex flex-col h-screen bg-[#1c1c1c] font-['VT323'] text-[#00ff00]">
-      <header className="flex items-center justify-between px-4 py-2 border-b border-[#00ff00]">
-        <div className="text-lg font-bold">iExec IDE</div>
-        <div className="flex items-center gap-2">
+    <header className="flex items-center justify-between px-4 py-2 border-b border-[#00ff00]">
+      <div className="text-lg font-bold">iExec IDE</div>
+            <div className="flex items-center gap-2">
           <Button variant="ghost" size="icon">
             <MinimizeIcon className="w-4 h-4" />
             <span className="sr-only">Minimize</span>
@@ -55,8 +78,8 @@ export default function MainPage() {
           </Button>
         </div>
       </header>
-      <div className="flex-1 grid grid-cols-[200px_1fr_300px] gap-4 p-4">
-        <nav className="border border-[#00ff00] rounded-md p-2 flex flex-col gap-2">
+      <div className="flex-1 grid grid-cols-[200px_1fr_300px] gap-4 p-4 overflow-auto">
+        <nav className="border border-[#00ff00] rounded-md p-2 flex flex-col gap-2 ">
           <Button variant="ghost" className="justify-start">
             <FileIcon className="w-4 h-4 mr-2" />
             Projects
@@ -87,8 +110,8 @@ export default function MainPage() {
             Open Wallet
           </Button>
         </nav>
-        <div className="border border-[#00ff00] rounded-md p-2 flex flex-col gap-4">
-          <div className="flex items-center justify-between">
+        <div className="border border-[#00ff00] rounded-md p-2  gap-4 resize-none h-[500px]">
+          <div className=" items-center justify-between">
             <div className="text-lg font-bold">main.js</div>
             <div className="flex items-center gap-2">
               <Button variant="ghost" size="icon">
@@ -105,12 +128,20 @@ export default function MainPage() {
               </Button>
             </div>
           </div>
-          <Textarea
-            className="bg-[#1c1c1c] text-[#00ff00] font-['VT323'] resize-none flex-1"
-            placeholder="// Write your code here"
-            value={codeArea}
-            onChange={(e) => setCodeArea(e.target.value)}
-          />
+          <div className="h-[200px] overflow-auto mb-2">
+            <SyntaxHighlighter
+              language="javascript"
+              style={vscDarkPlus}
+              customStyle={{
+                backgroundColor: '#1c1c1c',
+                fontSize: '14px',
+                lineHeight: '1.5',
+              }}
+              className="h-full"
+            >
+              {codeArea}
+            </SyntaxHighlighter>
+          </div>
           <div className="border-t border-[#00ff00] pt-2 flex items-center justify-between">
             <div>
               <TerminalIcon className="w-4 h-4 mr-2 inline-block" />
@@ -127,7 +158,7 @@ export default function MainPage() {
               </Button>
             </div>
           </div>
-          <div className="bg-[#1c1c1c] text-[#00ff00] font-['VT323'] p-2 overflow-auto flex-1">
+          <div className="bg-[#1c1c1c] text-[#00ff00] font-['VT323'] resize-none flex-1 h-[100px] overflow-auto">
             <div>$ iexec deploy</div>
             <div>Deploying to iExec...</div>
             <div>Deployment successful!</div>
@@ -138,7 +169,7 @@ export default function MainPage() {
             <div className="text-lg font-bold">AI Assistant</div>
           </div>
           <Textarea
-            className="bg-[#1c1c1c] text-[#00ff00] font-['VT323'] resize-none flex-1"
+            className="bg-[#1c1c1c] text-[#00ff00] font-['VT323'] resize-none h-[100px]"
             placeholder="Ask the AI assistant a question..."
             value={aiPrompt}
             onChange={(e) => setAiPrompt(e.target.value)}
@@ -154,17 +185,15 @@ export default function MainPage() {
             <SendIcon className="w-4 h-4 mr-2" />
             Submit
           </Button>
-          <div className="bg-[#1c1c1c] text-[#00ff00] font-['VT323'] p-2 overflow-auto flex-1">
-            <div>User: How can I deploy my smart contract to iExec?</div>
-            <div>AI: To deploy your smart contract to iExec, follow these steps:</div>
-            <div>1. Compile your Solidity code into a bytecode file.</div>
-            <div>2. Create an iExec app by registering your bytecode file on the iExec Marketplace.</div>
-            <div>3. Deploy your app to the iExec network using the iExec CLI or SDK.</div>
-            <div>4. Your smart contract is now deployed and can be executed on the iExec decentralized cloud.</div>
+          <Textarea
+            className="bg-[#1c1c1c] text-[#00ff00] font-['VT323'] p-2 overflow-auto h-[200px] resize-none"
+            value={explanation}
+            readOnly
+          />
+          {isLoading && <div>AI is thinking...</div>}
           </div>
-        </div>
+        </div>  
       </div>
-    </div>
   )
 }
 
