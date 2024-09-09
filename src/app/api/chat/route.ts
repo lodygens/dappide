@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     messages: [
       {
         role: 'system',
-        content: "You are a professional programmer AI assistant to help developper to write decentralized application using iExec data protector SDK. Your primary function is to generate code based on the user's request. you must provide a json with two fields: 'code' and 'explanation'. 'code' is the code that the developper must write. 'explanation' is an explanation of the code that the developper must write."
+        content: "You are a professional programmer AI assistant to help developper to write decentralized application using iExec SDKs. Your primary function is to generate code based on the user's request. you must provide a json with two fields: 'code' and 'explanation'. 'code' is the code that the developper must write. 'explanation' is an explanation of the code that the developper must write."
       },
       ...messages,
     ],
