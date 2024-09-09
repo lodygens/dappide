@@ -78,7 +78,7 @@ export default function MainPage() {
           </Button>
         </div>
       </header>
-      <div className="flex-1 grid grid-cols-[200px_1fr_300px] gap-4 p-4 overflow-auto">
+      <div className="flex-1 grid grid-cols-[200px_1fr_300px] gap-4 p-4 overflow-auto h-full">
         <nav className="border border-[#00ff00] rounded-md p-2 flex flex-col gap-2 ">
           <Button variant="ghost" className="justify-start">
             <FileIcon className="w-4 h-4 mr-2" />
@@ -110,8 +110,8 @@ export default function MainPage() {
             Open Wallet
           </Button>
         </nav>
-        <div className="border border-[#00ff00] rounded-md p-2  gap-4 resize-none h-[500px]">
-          <div className=" items-center justify-between">
+        <div className="border border-[#00ff00] rounded-md p-2 flex flex-col h-full">
+        <div className=" items-center justify-between">
             <div className="text-lg font-bold">main.js</div>
             <div className="flex items-center gap-2">
               <Button variant="ghost" size="icon">
@@ -128,7 +128,7 @@ export default function MainPage() {
               </Button>
             </div>
           </div>
-          <div className="h-[200px] overflow-auto mb-2">
+          <div className="h-[70%] overflow-auto mb-2">
             <SyntaxHighlighter
               language="javascript"
               style={vscDarkPlus}
@@ -158,13 +158,13 @@ export default function MainPage() {
               </Button>
             </div>
           </div>
-          <div className="bg-[#1c1c1c] text-[#00ff00] font-['VT323'] resize-none flex-1 h-[100px] overflow-auto">
-            <div>$ iexec deploy</div>
+          <div className="bg-[#1c1c1c] text-[#00ff00] font-['VT323'] resize-none flex-1 h-[30%] overflow-auto">
+          <div>$ iexec deploy</div>
             <div>Deploying to iExec...</div>
             <div>Deployment successful!</div>
           </div>
         </div>
-        <div className="border border-[#00ff00] rounded-md p-2 flex flex-col gap-4">
+        <div className="border border-[#00ff00] rounded-md p-2 flex flex-col gap-4 h-full">
           <div className="flex items-center justify-between">
             <div className="text-lg font-bold">AI Assistant</div>
           </div>
