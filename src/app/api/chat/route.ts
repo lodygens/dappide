@@ -10,7 +10,7 @@ const openai = new OpenAI({
 export const runtime = "edge";
 
 export async function POST(req: Request) {
-  const { messages } = await req.json();
+  const { messages, temperature, max_tokens, top_p, frequency_penalty, presence_penalty } = await req.json();
   console.log('messages = ', messages);
 
   // Ask OpenAI for a streaming chat completion given the prompt
@@ -24,6 +24,11 @@ export async function POST(req: Request) {
       },
       ...messages,
     ],
+    temperature: temperature ?? 0.75,
+    max_tokens: max_tokens ?? 500,
+    top_p: top_p ?? 0.9,
+    frequency_penalty: frequency_penalty ?? 0.5,
+    presence_penalty: presence_penalty ?? 0.6,
   });
 
   // Convert the response into a friendly text-stream
