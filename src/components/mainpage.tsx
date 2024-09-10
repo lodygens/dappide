@@ -225,7 +225,7 @@ function ChevronDownIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 
-function ChevronUpIcon(props) {
+function ChevronUpIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -245,7 +245,7 @@ function ChevronUpIcon(props) {
 }
 
 
-function CloudIcon(props) {
+function CloudIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -265,7 +265,7 @@ function CloudIcon(props) {
 }
 
 
-function FileIcon(props) {
+function FileIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -286,7 +286,7 @@ function FileIcon(props) {
 }
 
 
-function GithubIcon(props) {
+function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -307,7 +307,7 @@ function GithubIcon(props) {
 }
 
 
-function MaximizeIcon(props) {
+function MaximizeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -330,7 +330,7 @@ function MaximizeIcon(props) {
 }
 
 
-function MinimizeIcon(props) {
+function MinimizeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -353,7 +353,7 @@ function MinimizeIcon(props) {
 }
 
 
-function PlayIcon(props) {
+function PlayIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -373,7 +373,7 @@ function PlayIcon(props) {
 }
 
 
-function SaveIcon(props) {
+function SaveIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -395,7 +395,7 @@ function SaveIcon(props) {
 }
 
 
-function SendIcon(props) {
+function SendIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -416,7 +416,7 @@ function SendIcon(props) {
 }
 
 
-function SettingsIcon(props) {
+function SettingsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -437,7 +437,7 @@ function SettingsIcon(props) {
 }
 
 
-function TerminalIcon(props) {
+function TerminalIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -458,7 +458,7 @@ function TerminalIcon(props) {
 }
 
 
-function WalletIcon(props) {
+function WalletIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
