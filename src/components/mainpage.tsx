@@ -28,6 +28,7 @@ import { useChat } from "ai/react";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import AiSettingsPage from './aisettingspage';
+import IntroPage from './intro-page';
 
 
 export default function MainPage() {
@@ -36,6 +37,7 @@ export default function MainPage() {
   const [codeArea, setCodeArea] = useState('');
   const [explanation, setExplanation] = useState('');
   const [showSettings, setShowSettings] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
   const { isConnected, handleGithubConnect } = useGithubConnection();
   const { messages, isLoading, append } = useChat();
 
@@ -67,6 +69,8 @@ export default function MainPage() {
   
   return (
     <div className="flex flex-col h-screen bg-[#1c1c1c] font-['VT323'] text-[#00ff00]">
+    {showSettings && <AiSettingsPage onClose={() => setShowSettings(false)} />}
+    
     <header className="flex items-center justify-between px-4 py-2 border-b border-[#00ff00]">
       <div className="text-lg font-bold">iExec IDE</div>
             <div className="flex items-center gap-2">
@@ -82,23 +86,15 @@ export default function MainPage() {
       </header>
       <div className="flex-1 grid grid-cols-[200px_1fr_300px] gap-4 p-4 overflow-auto h-full">
         <nav className="border border-[#00ff00] rounded-md p-2 flex flex-col gap-2 ">
-          <Button variant="ghost" className="justify-start">
+          <Button variant="ghost" className="justify-start" onClick={() => setShowIntro(true)}>
             <FileIcon className="w-4 h-4 mr-2" />
-            Projects
+            Intro
           </Button>
-          <Button variant="ghost" className="justify-start">
-            <TerminalIcon className="w-4 h-4 mr-2" />
-            Terminal
-          </Button>
-          <Button variant="ghost" className="justify-start">
-            <CloudIcon className="w-4 h-4 mr-2" />
-            Deploy
-          </Button>
+          {showIntro && <IntroPage onClose={() => setShowIntro(false)} />}
           <Button variant="ghost" className="justify-start" onClick={() => setShowSettings(true)}>
             <SettingsIcon className="w-4 h-4 mr-2" />
-            Settings
+            AI Settings
           </Button>
-          {showSettings && <AiSettingsPage onClose={() => setShowSettings(false)} />}
 
           <Button 
             variant="ghost" 
