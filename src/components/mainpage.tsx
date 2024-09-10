@@ -130,7 +130,7 @@ export default function MainPage() {
           </div>
           <div className="h-[70%] overflow-auto mb-2">
             <SyntaxHighlighter
-              language="javascript"
+            language="javascript"
               style={vscDarkPlus}
               customStyle={{
                 backgroundColor: '#1c1c1c',
@@ -159,9 +159,9 @@ export default function MainPage() {
             </div>
           </div>
           <div className="bg-[#1c1c1c] text-[#00ff00] font-['VT323'] resize-none flex-1 h-[30%] overflow-auto">
-          <div>$ iexec deploy</div>
-            <div>Deploying to iExec...</div>
-            <div>Deployment successful!</div>
+          <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
           </div>
         </div>
         <div className="border border-[#00ff00] rounded-md p-2 flex flex-col gap-4 h-full">
