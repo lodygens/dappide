@@ -193,6 +193,14 @@ export default function MainPage() {
           {isLoading && <div>AI is thinking...</div>}
           </div>
         </div>  
+        <footer className="mt-auto border-t border-[#00ff00] p-4 text-xs text-center">
+        <p>© iExec Blockchain Technologies, 2024 - Written by Oleg Lodygensky. Licensed under Apache License 2.0.</p>
+        <p className="mt-2">
+          Disclaimer: This software is provided "as is", without warranty of any kind.
+          Use at your own risk.
+        </p>
+      </footer>
+
       </div>
   )
 }
