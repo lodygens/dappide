@@ -22,6 +22,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { Slider } from "@/components/ui/slider"
 import { useState, useEffect } from 'react';
+import { ExternalLink } from 'lucide-react'
 
 interface AiSettingsPageProps {
   onClose: () => void;
@@ -36,24 +37,50 @@ const AiSettingsPage: React.FC<AiSettingsPageProps> = ({ onClose }) => {
   const [temperature, setTemperature] = useState(0.75);
 
   return (
-        <div className="fixed inset-0 bg-[#1c1c1c] flex items-center justify-center z-50">
-          <div className="bg-[#1c1c1c] border border-[#00ff00] rounded-md p-6 w-full max-w-md">
-            <h2 className="text-lg font-bold mb-4">AI Assistant Settings</h2>
-            <div className="grid gap-4">
+    <div className="fixed inset-0 bg-[#1c1c1c] flex items-center justify-center z-50">
+      <div className="bg-[#1c1c1c] border border-[#00ff00] rounded-md p-6 w-full max-w-md">
+        <h2 className="text-lg font-bold mb-4">AI Assistant Settings</h2>
+        <div className="grid gap-4">
               <div>
-                <label htmlFor="prompt" className="block mb-2">
-                  System Prompt
-                </label>
-                <Textarea
+                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center">
+                 <label htmlFor="presence-penalty" className="mr-2">
+                   System Prompt
+                  </label>
+                  <a 
+                    href="https://github.com/mustvlad/ChatGPT-System-Prompts" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[#33ff33] hover:text-[#66ff66] transition-colors flex items-center"
+                    aria-label="System prompts"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                  </div>
+                  </div>
+                  <Textarea
                   id="prompt"
                   className="bg-[#1c1c1c] text-[#00ff00] font-['VT323'] resize-none"
                   placeholder="Enter your system prompt..."
                 />
               </div>
               <div>
-                <label htmlFor="mode" className="block mb-2">
-                  Mode
-                </label>
+              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center">
+                 <label htmlFor="presence-penalty" className="mr-2">
+                   Model
+                  </label>
+                  <a 
+                    href="https://platform.openai.com/docs/models" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[#33ff33] hover:text-[#66ff66] transition-colors flex items-center"
+                    aria-label="OpenAI Models"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                  </div>
+                  </div>
                 <Select id="mode" defaultValue="gpt-4">
                   <SelectTrigger className="bg-[#1c1c1c] text-[#00ff00] font-['VT323']">
                     <SelectValue placeholder="Select mode" />
@@ -63,11 +90,24 @@ const AiSettingsPage: React.FC<AiSettingsPageProps> = ({ onClose }) => {
                     <SelectItem value="gpt-3">GPT-3</SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
-              <div>
-                <label htmlFor="temperature" className="block mb-2">
-                  Temperature: {0} - {1}
-                </label>
+                </div>
+                <div>
+              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center">
+                 <label htmlFor="presence-penalty" className="mr-2">
+                   Temperature
+                  </label>
+                  <a 
+                    href="https://platform.openai.com/docs/api-reference/chat/create#chat-create-temperature" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[#33ff33] hover:text-[#66ff66] transition-colors flex items-center"
+                    aria-label="Temperature for the model"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+                </div>
                 <Slider
                   id="temperature"
                   min={0}
@@ -83,10 +123,22 @@ const AiSettingsPage: React.FC<AiSettingsPageProps> = ({ onClose }) => {
                   <span>1</span>
                 </div>
               </div>
-              <div>
-                <label htmlFor="max-tokens" className="block mb-2">
-                  Max Tokens: {0} - {1000}
-                </label>
+              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center">
+                 <label htmlFor="presence-penalty" className="mr-2">
+                   Tokens
+                  </label>
+                  <a 
+                    href="https://platform.openai.com/docs/advanced-usage/managing-tokens" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[#33ff33] hover:text-[#66ff66] transition-colors flex items-center"
+                    aria-label="Tokens"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+                </div>
                 <Slider
                   id="max-tokens"
                   min={0}
@@ -103,9 +155,22 @@ const AiSettingsPage: React.FC<AiSettingsPageProps> = ({ onClose }) => {
                 </div>
               </div>
               <div>
-                <label htmlFor="top-p" className="block mb-2">
-                  Top P: {0} - {1}
-                </label>
+              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center">
+                 <label htmlFor="presence-penalty" className="mr-2">
+                   Top P
+                  </label>
+                  <a 
+                    href="https://platform.openai.com/docs/api-reference/chat/create#chat-create-top_p" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[#33ff33] hover:text-[#66ff66] transition-colors flex items-center"
+                    aria-label="Top-p"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+                </div>
                 <Slider
                   id="top-p"
                   min={0}
@@ -122,9 +187,23 @@ const AiSettingsPage: React.FC<AiSettingsPageProps> = ({ onClose }) => {
                 </div>
               </div>
               <div>
-                <label htmlFor="frequency-penalty" className="block mb-2">
-                  Frequency Penalty: {0} - {1}
-                </label>
+                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center">
+                 <label htmlFor="presence-penalty" className="mr-2">
+                 Frequency Penalty
+                  </label>
+                  <a 
+                    href="https://platform.openai.com/docs/advanced-usage/frequency-and-presence-penalties" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[#33ff33] hover:text-[#66ff66] transition-colors flex items-center"
+                    aria-label="Frequency Penalty"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+                </div>
+
                 <Slider
                   id="frequency-penalty"
                   min={0}
@@ -141,9 +220,24 @@ const AiSettingsPage: React.FC<AiSettingsPageProps> = ({ onClose }) => {
                 </div>
               </div>
               <div>
-                <label htmlFor="presence-penalty" className="block mb-2">
-                  Presence Penalty: {0} - {1}
-                </label>
+                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center">
+
+                 <label htmlFor="presence-penalty" className="mr-2">
+                 Presence Penalty
+                  </label>
+                  <a 
+                    href="https://platform.openai.com/docs/advanced-usage/frequency-and-presence-penalties" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[#33ff33] hover:text-[#66ff66] transition-colors flex items-center"
+                    aria-label="Presence Penalty"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                  </div>
+                  </div>
+
                 <Slider
                   id="presence-penalty"
                   min={0}
@@ -166,7 +260,6 @@ const AiSettingsPage: React.FC<AiSettingsPageProps> = ({ onClose }) => {
               </div>
             </div>
           </div>
-        </div>
       )
 }
 
