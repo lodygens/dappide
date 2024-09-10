@@ -81,7 +81,7 @@ const AiSettingsPage: React.FC<AiSettingsPageProps> = ({ onClose }) => {
                   </a>
                   </div>
                   </div>
-                <Select id="mode" defaultValue="gpt-4">
+                <Select defaultValue="gpt-4">
                   <SelectTrigger className="bg-[#1c1c1c] text-[#00ff00] font-['VT323']">
                     <SelectValue placeholder="Select mode" />
                   </SelectTrigger>
