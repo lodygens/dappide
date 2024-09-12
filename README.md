@@ -2,7 +2,7 @@
 
 This is not to be put in production.
 
-This is only a study to understand how AI can
+This is a study -and not more- to understand how AI can
 1. help to develop an application, thanks to [v0.dev](https://v0.dev) and [Cursor](https://www.cursor.com/);
 2. be integrated into the application logic thanks to [OpanAI API](https://openai.com/api/) and its dedicated [Node library](https://www.npmjs.com/package/openai).
 
