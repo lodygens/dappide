@@ -9,6 +9,9 @@ This is a study -and not more- to understand how AI can
 ## DappAI
 This is Web App demonstrating AI usage to help user to develop their Dapp with iExec SDK.
 
+### System prompt
+System prompt is defined in [app/api/chat/route.ts](https://github.com/lodygens/dappide/blob/069a44a00049f3cd77dfcad4bec235edb06f5271/src/app/api/chat/route.ts#L23]
+
 ### V0
 Used VO prompt 
 "I want to write a web app as an IDE to help developer to write their decentralized appliation with iExec SDK. The UI style should be retro, like Apple 2e"
